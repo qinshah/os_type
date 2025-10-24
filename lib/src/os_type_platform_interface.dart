@@ -4,7 +4,6 @@ import 'os_type_method_channel.dart';
 
 abstract class OsTypePlatform extends PlatformInterface {
   OsTypePlatform() : super(token: _token);
-
   static final Object _token = Object();
 
   static OsTypePlatform _instance = MethodChannelOsType();
@@ -22,5 +21,5 @@ abstract class OsTypePlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  late final bool isPC;
+  Future<String?> getDeviceType();
 }

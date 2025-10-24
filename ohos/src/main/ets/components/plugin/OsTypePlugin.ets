@@ -23,7 +23,6 @@ export default class OsTypePlugin implements FlutterPlugin, MethodCallHandler {
   onAttachedToEngine(binding: FlutterPluginBinding): void {
     this.channel = new MethodChannel(binding.getBinaryMessenger(), "os_type");
     this.channel.setMethodCallHandler(this)
-    // this.channel.deviceInfo
   }
 
   onDetachedFromEngine(binding: FlutterPluginBinding): void {
@@ -34,6 +33,8 @@ export default class OsTypePlugin implements FlutterPlugin, MethodCallHandler {
 
   onMethodCall(call: MethodCall, result: MethodResult): void {
     switch (call.method) {
+      case 'getDeviceType':
+        result.success(deviceInfo.deviceType);
       default:
         result.notImplemented()
     }

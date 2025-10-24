@@ -3,22 +3,30 @@ import 'package:flutter/foundation.dart';
 import 'src/os_type_platform_interface.dart';
 
 abstract class OsType {
-  static final _osTypePlatform = OsTypePlatform.instance;
-  static final _os = defaultTargetPlatform;
+  static bool deviceTypeinitialized = false;
 
-  static final bool isAndroid = _os == TargetPlatform.android;
+  static Future<void> initDeviceType() async {
+    _deviceType = await OsTypePlatform.instance.getDeviceType();
+    deviceTypeinitialized = true;
+  }
 
-  static final bool isFuchsia = _os == TargetPlatform.fuchsia;
+  static final os = defaultTargetPlatform;
 
-  static final bool isIOS = _os == TargetPlatform.iOS;
+  static late final String? _deviceType;
 
-  static final bool isLinux = _os == TargetPlatform.linux;
+  static final bool isAndroid = os == TargetPlatform.android;
 
-  static final bool isMacOS = _os == TargetPlatform.macOS;
+  static final bool isFuchsia = os == TargetPlatform.fuchsia;
 
-  static final bool isWindows = _os == TargetPlatform.windows;
+  static final bool isIOS = os == TargetPlatform.iOS;
 
-  static final bool isHarmony = _os.toString() == 'TargetPlatform.ohos';
+  static final bool isLinux = os == TargetPlatform.linux;
+
+  static final bool isMacOS = os == TargetPlatform.macOS;
+
+  static final bool isWindows = os == TargetPlatform.windows;
+
+  static final bool isHarmony = os.toString() == 'TargetPlatform.ohos';
 
   static final bool isWeb = kIsWeb;
 
@@ -29,16 +37,17 @@ abstract class OsType {
   static final bool isHarmonyPC = _isHarmonyPC();
 
   static bool _isHarmonyPC() {
-    if (!isHarmony) {
-      return false;
-    } else if (isWeb) {
-      throw Exception('在鸿蒙web中无法判断是否为鸿蒙PC');
-    }
-    return _osTypePlatform.isPC;
+    if (!isHarmony) return false;
+    assert(!kIsWeb, '在鸿蒙web中无法判断是否为鸿蒙PC');
+    assert(
+      deviceTypeinitialized,
+      '在鸿蒙中判断是否为PC请先调用OsType.initDeviceType()进行初始化',
+    );
+    return _deviceType == '2in1';
   }
 
   static bool _isPc() {
-    switch (_os) {
+    switch (os) {
       case TargetPlatform.linux:
       case TargetPlatform.macOS:
       case TargetPlatform.windows:
