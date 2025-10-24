@@ -7,6 +7,8 @@ import {
   MethodResult,
 } from '@ohos/flutter_ohos';
 
+import { deviceInfo } from '@kit.BasicServicesKit';
+
 /** OsTypePlugin **/
 export default class OsTypePlugin implements FlutterPlugin, MethodCallHandler {
   private channel: MethodChannel | null = null;
@@ -21,6 +23,7 @@ export default class OsTypePlugin implements FlutterPlugin, MethodCallHandler {
   onAttachedToEngine(binding: FlutterPluginBinding): void {
     this.channel = new MethodChannel(binding.getBinaryMessenger(), "os_type");
     this.channel.setMethodCallHandler(this)
+    // this.channel.deviceInfo
   }
 
   onDetachedFromEngine(binding: FlutterPluginBinding): void {
@@ -30,10 +33,9 @@ export default class OsTypePlugin implements FlutterPlugin, MethodCallHandler {
   }
 
   onMethodCall(call: MethodCall, result: MethodResult): void {
-    if (call.method == "getPlatformVersion") {
-      result.success("OpenHarmony ^ ^ ")
-    } else {
-      result.notImplemented()
+    switch (call.method) {
+      default:
+        result.notImplemented()
     }
   }
 }
