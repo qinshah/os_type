@@ -3,7 +3,7 @@ import 'package:os_type/os_type.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (OsType.isHarmony) await OsType.initDeviceType();
+  if (OsType.isHarmony) await OsType.initHarmonyDeviceType();
   runApp(const MyApp());
 }
 
@@ -24,16 +24,34 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              for (var os in TargetPlatform.values) ...[
-                Text('Is ${os.toString().split('.').last}: ${OsType.os == os}'),
-                SizedBox(height: 8),
-              ],
+              Text('is android: ${OsType.isAndroid}'),
+              SizedBox(height: 8),
+              Text('is fuchsia: ${OsType.isFuchsia}'),
+              SizedBox(height: 8),
+              Text('is iOS: ${OsType.isIOS}'),
+              SizedBox(height: 8),
+              Text('is linux: ${OsType.isLinux}'),
+              SizedBox(height: 8),
+              Text('is macOS: ${OsType.isMacOS}'),
+              SizedBox(height: 8),
+              Text('is windows: ${OsType.isWindows}'),
+              SizedBox(height: 8),
+              Text('is ohos: ${OsType.isHarmony}'),
+              SizedBox(height: 8),
+              // 上面的列举有更简单的写法：
+              // for (var os in TargetPlatform.values) ...[
+              //   Text('is ${os.name}: ${OsType.os == os}'),
+              //   SizedBox(height: 8),
+              // ],
+
+              // pc和mobile是相反的，而is web则等于KIsWeb，是独立的判断，与其它无关
               SizedBox(height: 20),
-              Text('PC or Mobile: ${OsType.isPC ? 'PC' : 'Mobile'}'),
+              Text('is PC: ${OsType.isPC}'),
               SizedBox(height: 8),
-              Text('Web: ${OsType.isWeb}'),
+              Text('is Mobile: ${OsType.isMobile}'), // isMobile == !isPC
               SizedBox(height: 8),
-              Text('Harmony PC: ${OsType.isHarmonyPC}'),
+              Text('is Web: ${OsType.isWeb}'), // isWeb == KIsWeb
+              SizedBox(height: 8),
             ],
           ),
         ),
