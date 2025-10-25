@@ -3,6 +3,7 @@ import 'package:os_type/os_type.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // 如果需要在鸿蒙上判断是否为PC/Mobile，需要先await OS.initHarmonyDeviceType()
   if (OS.isHarmony) await OS.initHarmonyDeviceType();
   runApp(const MyApp());
 }
@@ -44,13 +45,13 @@ class _MyAppState extends State<MyApp> {
               //   SizedBox(height: 8),
               // ],
 
-              // pc和mobile是相反的，而is web则等于KIsWeb，是独立的判断，与其它无关
+              // pc和mobile是相反的，而web环境则等于kIsWeb，与操作系统无关
               SizedBox(height: 20),
               Text('is PC: ${OS.isPCOS}'),
               SizedBox(height: 8),
-              Text('is Mobile: ${OS.isMobileOS}'), // isMobile == !isPC
+              Text('is Mobile: ${OS.isMobileOS}'), // isMobileOS == !isPCOS
               SizedBox(height: 8),
-              Text('is Web: ${OS.isWebEnv}'), // isWeb == KIsWeb
+              Text('is Web environment: ${OS.isWebEnv}'), // isWebEnv == kIsWeb
               SizedBox(height: 8),
             ],
           ),
