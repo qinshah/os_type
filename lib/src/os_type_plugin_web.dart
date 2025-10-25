@@ -7,5 +7,5 @@
 /// 只用于注册纯dart插件，实际上没有作用
 class OsTypePluginWeb {
   /// Only used to register pure dart plugins, in fact, there is no effect
-  static void registerWith(registrar) {}
+  static void registerWith(_) {}
 }

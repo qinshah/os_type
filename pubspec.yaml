@@ -1,6 +1,6 @@
 name: os_type
 description: "Useful for OS and web environment detection, supports HarmonyOS."
-version: 0.2.0
+version: 0.2.1
 repository: https://github.com/qinshah/os_type
 
 environment:
