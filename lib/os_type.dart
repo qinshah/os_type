@@ -2,45 +2,166 @@ import 'package:flutter/foundation.dart';
 
 import 'src/os_type_platform_interface.dart';
 
-abstract class OsType {
+/// 🌐en:
+///
+/// Useful for OS and web environment detection
+///
+/// 🌐中文:
+///
+/// 用于检测操作系统类型和web环境
+abstract class OS {
+  /// 🌐en:
+  ///
+  /// HarmonyOS Device Type, need to call initHarmonyDeviceType() first
+  ///
+  /// 🌐中文:
+  ///
+  /// 鸿蒙设备类型，需要调用initHarmonyDeviceType()才可用
   static String? _harmonyDeviceType;
+
+  /// 🌐en:
+  ///
+  /// Initialize HarmonyOS Device Type
+  ///
+  /// ⚠️warning: In web environment, it cannot work
+  ///
+  /// 🌐中文:
+  ///
+  /// 初始化鸿蒙设备类型
+  ///
+  /// ⚠️注意，在web环境中无法获取
   static Future<void> initHarmonyDeviceType() async {
     if (!isHarmony) {
-      _harmonyDeviceType = 'unknown';
+      _harmonyDeviceType = 'null';
       throw Exception('不能也不需要在非鸿蒙系统中获取鸿蒙设备类型');
     }
-    if (isWeb) {
-      _harmonyDeviceType = 'unknown';
-      throw Exception('暂时无法在web上获取鸿蒙设备类型');
+    if (isWebEnv) {
+      _harmonyDeviceType = '2in1';
+      throw Exception('暂时无法在web上获取鸿蒙设备类型，默认为2in1');
     }
-    _harmonyDeviceType =
-        await OsTypePlatform.instance.getDeviceType() ?? 'unknown';
+    _harmonyDeviceType = await OsTypePlatform.instance.getDeviceType();
+    if (_harmonyDeviceType == null) {
+      _harmonyDeviceType = '2in1';
+      throw Exception('未能获取到鸿蒙设备类型，默认为2in1');
+    }
   }
 
-  static final os = defaultTargetPlatform;
+  /// 🌐en:
+  ///
+  /// Current operating system
+  ///
+  /// 🌐中文:
+  ///
+  /// 当前操作系统
+  static final value = defaultTargetPlatform;
 
-  static final isAndroid = os == TargetPlatform.android;
+  /// 🌐en:
+  ///
+  /// Android OS?
+  ///
+  /// 🌐中文:
+  ///
+  /// 是否为安卓操作系统
+  static final isAndroid = value == TargetPlatform.android;
 
-  static final isFuchsia = os == TargetPlatform.fuchsia;
+  /// 🌐en:
+  ///
+  /// Fuchsia OS?
+  ///
+  /// 🌐中文:
+  ///
+  /// 是否为Fuchsia操作系统
+  static final isFuchsia = value == TargetPlatform.fuchsia;
 
-  static final isIOS = os == TargetPlatform.iOS;
+  /// 🌐en:
+  ///
+  /// iOS?
+  ///
+  /// 🌐中文:
+  ///
+  /// 是否为iOS
+  static final isIOS = value == TargetPlatform.iOS;
 
-  static final isLinux = os == TargetPlatform.linux;
+  /// 🌐en:
+  ///
+  /// Linux OS?
+  ///
+  /// 🌐中文:
+  ///
+  /// 是否为Linux操作系统
+  static final isLinux = value == TargetPlatform.linux;
 
-  static final isMacOS = os == TargetPlatform.macOS;
+  /// 🌐en:
+  ///
+  /// mac OS?
+  ///
+  /// 🌐中文:
+  ///
+  /// 是否为mac操作系统
+  static final isMacOS = value == TargetPlatform.macOS;
 
-  static final isWindows = os == TargetPlatform.windows;
+  /// 🌐en:
+  ///
+  /// Windows OS?
+  ///
+  /// 🌐中文:
+  ///
+  /// 是否为Windows操作系统
+  static final isWindows = value == TargetPlatform.windows;
 
-  static final isHarmony = os.toString() == 'TargetPlatform.ohos';
+  /// 🌐en:
+  ///
+  /// Harmony OS?
+  ///
+  /// 🌐中文:
+  ///
+  /// 是否为鸿蒙操作系统
+  static final isHarmony = value.toString() == 'TargetPlatform.ohos';
 
-  static final isWeb = kIsWeb;
+  /// 🌐en:
+  ///
+  /// Web environment? ⚠️warning: isWebEnv == kIsWeb, Not related to OS
+  ///
+  /// 🌐中文:
+  ///
+  /// 是否为web环境，⚠️注意：isWebEnv == kIsWeb，和操作系统无关
+  static final isWebEnv = kIsWeb;
 
-  static final isPC = _isPc();
+  /// 🌐en:
+  ///
+  /// Whether it is a PC OS
+  ///
+  /// Currently, linux, mac and windows are considered PC OS
+  ///
+  /// For Harmony, When the device type is 2in1, it is considered a PC OS. It means that there will be problems in the web environment of HarmonyOS. See [_isPCOS] and [initHarmonyDeviceType]
+  ///
+  /// 🌐中文:
+  ///
+  /// 是否属于PC操作系统
+  ///
+  /// 目前认为linux、mac和windows属于PC操作系统
+  ///
+  /// 对于鸿蒙，认为设备类型为2in1时属于PC操作系统。这意味着鸿蒙web环境中会有问题，见[_isPCOS]和[initHarmonyDeviceType]
+  static final isPCOS = _isPCOS();
 
-  static final isMobile = !isPC;
+  /// 🌐en:
+  ///
+  /// Whether it is a mobile OS, == !isPCOS, see [isPCOS]
+  ///
+  /// 🌐中文:
+  ///
+  /// 是否属于移动操作系统，== !isPCOS，见[isPCOS]
+  static final isMobileOS = !isPCOS;
 
-  static bool _isPc() {
-    switch (os) {
+  /// 🌐en:
+  ///
+  /// See [isPCOS]
+  ///
+  /// 🌐中文:
+  ///
+  /// 见[isPCOS]
+  static bool _isPCOS() {
+    switch (value) {
       case TargetPlatform.linux:
       case TargetPlatform.macOS:
       case TargetPlatform.windows:

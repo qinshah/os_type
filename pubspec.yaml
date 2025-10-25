@@ -1,5 +1,5 @@
 name: os_type
-description: "A new Flutter plugin project."
+description: "Useful for OS and web environment detection, supports HarmonyOS."
 version: 0.0.1
 repository: https://github.com/qinshah/os_type
 

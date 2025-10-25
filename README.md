@@ -1,15 +1,17 @@
 # os_type
 
-A new Flutter plugin project.
+🌐en:
 
-## Getting Started
+Useful for OS and web environment detection, supports HarmonyOS
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/to/develop-plugins),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+🌐 中文:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+用于检测操作系统类型和 web 环境，支持鸿蒙
 
+## repository:
+
+https://github.com/qinshah/os_type
+
+## License:
+
+[License](LICENSE)

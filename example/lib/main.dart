@@ -3,7 +3,7 @@ import 'package:os_type/os_type.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (OsType.isHarmony) await OsType.initHarmonyDeviceType();
+  if (OS.isHarmony) await OS.initHarmonyDeviceType();
   runApp(const MyApp());
 }
 
@@ -24,33 +24,33 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('is android: ${OsType.isAndroid}'),
+              Text('is android: ${OS.isAndroid}'),
               SizedBox(height: 8),
-              Text('is fuchsia: ${OsType.isFuchsia}'),
+              Text('is fuchsia: ${OS.isFuchsia}'),
               SizedBox(height: 8),
-              Text('is iOS: ${OsType.isIOS}'),
+              Text('is iOS: ${OS.isIOS}'),
               SizedBox(height: 8),
-              Text('is linux: ${OsType.isLinux}'),
+              Text('is linux: ${OS.isLinux}'),
               SizedBox(height: 8),
-              Text('is macOS: ${OsType.isMacOS}'),
+              Text('is macOS: ${OS.isMacOS}'),
               SizedBox(height: 8),
-              Text('is windows: ${OsType.isWindows}'),
+              Text('is windows: ${OS.isWindows}'),
               SizedBox(height: 8),
-              Text('is ohos: ${OsType.isHarmony}'),
+              Text('is ohos: ${OS.isHarmony}'),
               SizedBox(height: 8),
               // 上面的列举有更简单的写法：
               // for (var os in TargetPlatform.values) ...[
-              //   Text('is ${os.name}: ${OsType.os == os}'),
+              //   Text('is ${os.name}: ${OS.value == os}'),
               //   SizedBox(height: 8),
               // ],
 
               // pc和mobile是相反的，而is web则等于KIsWeb，是独立的判断，与其它无关
               SizedBox(height: 20),
-              Text('is PC: ${OsType.isPC}'),
+              Text('is PC: ${OS.isPCOS}'),
               SizedBox(height: 8),
-              Text('is Mobile: ${OsType.isMobile}'), // isMobile == !isPC
+              Text('is Mobile: ${OS.isMobileOS}'), // isMobile == !isPC
               SizedBox(height: 8),
-              Text('is Web: ${OsType.isWeb}'), // isWeb == KIsWeb
+              Text('is Web: ${OS.isWebEnv}'), // isWeb == KIsWeb
               SizedBox(height: 8),
             ],
           ),
