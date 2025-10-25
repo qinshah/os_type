@@ -8,9 +8,9 @@ Useful for OS and web environment detection, supports HarmonyOS
 
 用于检测操作系统类型和 web 环境，支持鸿蒙
 
-## repository:
+github: https://github.com/qinshah/os_type
 
-https://github.com/qinshah/os_type
+![截图](截图/截图.png)
 
 ## example:
 
