@@ -1,5 +1,8 @@
 # os_type
 
+[![pub package](https://img.shields.io/pub/v/os_type.svg?label=os_type&color=blue)](https://pub.dev/packages/os_type)
+[github](https://github.com/qinshah/os_type)
+
 🌐en:
 
 Useful for OS and web environment detection, supports HarmonyOS
@@ -7,8 +10,6 @@ Useful for OS and web environment detection, supports HarmonyOS
 🌐 中文:
 
 用于检测操作系统类型和 web 环境，支持鸿蒙
-
-github: https://github.com/qinshah/os_type
 
 ![截图](截图/截图.png)
 

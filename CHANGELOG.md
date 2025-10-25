@@ -1,7 +1,13 @@
+## 0.2.2
+
+- Fixed web plugin registration parameters
+
+- Updated README
+
 ## 0.2.1
 
-- 修正 web 插件注册方法参数未使用警告
-- 在 web 环境初始化鸿蒙设备类型或是鸿蒙设备类型初始化结果为 null 时，使用 log 替代异常抛出，默认结果为 2in1，保证仍能正常运行
+- Fixed unused parameter warning in web plugin registration method
+- When initializing HarmonyOS device type in web environment or when the initialization result of HarmonyOS device type is null, use log instead of throwing an exception, with a default result of 2in1 to ensure normal operation
 
 ## 0.2.0
 
