@@ -1,3 +1,7 @@
+## 0.2.0
+
+- Fix plugin registration error
+
 ## 0.1.0
 
 - Downgrade SDK version limit

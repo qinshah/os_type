@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 
 import 'src/os_type_platform_interface.dart';
 
+export 'src/os_type_plugin.dart';
+
 /// 🌐en:
 ///
 /// Useful for OS and web environment detection
