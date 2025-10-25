@@ -1,7 +1,8 @@
 # os_type
 
-[![pub package](https://img.shields.io/pub/v/os_type.svg?label=os_type&color=blue)](https://pub.dev/packages/os_type)
-[github](https://github.com/qinshah/os_type)
+[![GitHub](https://img.shields.io/badge/GitHub-os_type-white)](https://github.com/qinshah/os_type)
+[![pub package](https://img.shields.io/pub/v/os_type?color=blue)](https://pub.dev/packages/os_type)
+[![points](https://img.shields.io/pub/points/os_type?color=blue)](https://pub.dev/packages/os_type/score)
 
 🌐en:
 
